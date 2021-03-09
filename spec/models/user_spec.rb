@@ -37,14 +37,23 @@ RSpec.describe User, type: :model do
         expect(valid_user).to eq(@user)
       end
 
-      it "should not log in with invalid credentials" do
+      # it "should not log in if credentials don't match" do
+      #   @user = User.create(name: 'Idil Jei', email: 'janedoe@gmail.com', password:'12345678', password_confirmation:'12345678')
+      #   loggingInUser = User.authenticate_with_credentials('janedoe@gmail.com', '12345678')
+      #   expect(loggingInUser).to eq(nil)
+      # end
+
+      it "should ignore whitespace" do
+        @user = User.create(name: 'Idil Jei', email: 'janedoe@gmail.com', password:'12345678', password_confirmation:'12345678')
+        loggingInUser = User.authenticate_with_credentials('janedoe@gmail.com', '12345678')
+        expect(loggingInUser).to eq(@user)
       end
-  
-      it "should ignore whitespace in email" do
-      end
-  
-      it "should not be case sensitive" do 
-      end
+
+      # it "should ignore capitals" do
+      #   @user = User.create(name: 'Idil Jei', email: 'janedoe@gmail.com', password:'te12345678st', password_confirmation:'12345678')
+      #   loggingInUser = User.authenticate_with_credentials('JANE@GMAIL', '12345678')
+      #   expect(loggingInUser).to eq(@user)
+      # end
     
     end 
   end
