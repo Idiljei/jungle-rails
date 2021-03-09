@@ -1,9 +1,5 @@
 require 'rails_helper'
 
-# RSpec.feature "ProductDetails", type: :feature do
-#   pending "add some scenarios (or delete) #{__FILE__}"
-# end
-
 RSpec.feature "Visitor navigates to home page", type: :feature, js: true do
 
   # SETUP
@@ -22,15 +18,13 @@ RSpec.feature "Visitor navigates to home page", type: :feature, js: true do
   end
 
   scenario "They see info of the selected product" do
-      # ACT
+  # ACT
       visit root_path
       first('.product').click_link('Details')
       
-  
       expect(page).to have_css 'article.product-detail', count: 1
-      # DEBUG / VERIFY
-      # commented out b/c it's for debugging only
+      # DEBUG / commented out -for debugging only
       # save_screenshot
-      puts page.html
+      # puts page.html
   end
 end
