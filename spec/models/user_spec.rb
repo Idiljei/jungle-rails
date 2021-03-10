@@ -24,11 +24,11 @@ RSpec.describe User, type: :model do
       
     end
 
-    # it 'validates email must be unique' do
-    #   @user = User.create(name: "Idil Jei", email: "jdoe@gmail.com", password: "12345678", password_confirmation: "12345678")
-    #   @user1 = User.create(name "Idil Jei",email: "jdoe@gmail.com"", password: "12345678", password_confirmation: "12345678")
-    #   expect(@user1).not_to be_valid
-    #   end
+     it 'validates email must be unique' do
+      @user = User.create(name: "Idil Jei", email: "jdoe@gmail.com", password: "12345678", password_confirmation: "12345678")
+      @user1 = User.create(name "Idil Jei",email: "jdoe@gmail.com", password: "12345678", password_confirmation: "12345678")
+      expect(@user1).not_to be_valid
+      end
 
     describe '.authenticate_with_credentials' do
       it "should successfully log in with valid credentials" do
@@ -37,11 +37,11 @@ RSpec.describe User, type: :model do
         expect(valid_user).to eq(@user)
       end
 
-      # it "should not log in if credentials don't match" do
-      #   @user = User.create(name: 'Idil Jei', email: 'janedoe@gmail.com', password:'12345678', password_confirmation:'12345678')
-      #   loggingInUser = User.authenticate_with_credentials('janedoe@gmail.com', '12345678')
-      #   expect(loggingInUser).to eq(nil)
-      # end
+      it "should not log in if credentials don't match" do
+        @user = User.create(name: 'Idil Jei', email: 'janedoe@gmail.com', password:'12345678', password_confirmation:'12345678')
+        loggingInUser = User.authenticate_with_credentials('janedoe@gmail.com', '12345678')
+        expect(loggingInUser).to eq(nil)
+      end
 
       it "should ignore whitespace" do
         @user = User.create(name: 'Idil Jei', email: 'janedoe@gmail.com', password:'12345678', password_confirmation:'12345678')
@@ -49,11 +49,11 @@ RSpec.describe User, type: :model do
         expect(loggingInUser).to eq(@user)
       end
 
-      # it "should ignore capitals" do
-      #   @user = User.create(name: 'Idil Jei', email: 'janedoe@gmail.com', password:'te12345678st', password_confirmation:'12345678')
-      #   loggingInUser = User.authenticate_with_credentials('JANE@GMAIL', '12345678')
-      #   expect(loggingInUser).to eq(@user)
-      # end
+      it "should ignore capitals" do
+        @user = User.create(name: 'Idil Jei', email: 'janedoe@gmail.com', password:'te12345678st', password_confirmation:'12345678')
+        loggingInUser = User.authenticate_with_credentials('JANE@GMAIL', '12345678')
+        expect(loggingInUser).to eq(@user)
+      end
     
     end 
   end
